@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Early Bird Countdown – Soul Jams</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Urbanist:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: #f78a4d;
+      font-family: 'Urbanist', sans-serif;
+      color: black;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-family: 'Anton', sans-serif;
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    .desc {
+      font-size: 1.4em;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .countdown {
+      font-size: 2em;
+      font-weight: 600;
+      background: black;
+      color: #f78a4d;
+      padding: 15px 25px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-bottom: 50px;
+    }
+
+    .btn {
+      background-color: black;
+      color: #f78a4d;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      animation: glow 2s infinite;
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 8px rgba(0,0,0,0.4); }
+      50% { box-shadow: 0 0 20px rgba(0,0,0,0.9); }
+      100% { box-shadow: 0 0 8px rgba(0,0,0,0.4); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Last Call for Soul!</h1>
+  <div class="desc">
+    Early Bird tickets to Soul Jams 3rd Anniversary<br>
+    close on <b>July 18, 11:59 PM</b>.<br>
+    If you’re reading this... the universe gave you a nudge ✨
+  </div>
+
+  <div class="countdown" id="countdown">Loading countdown...</div>
+
+  <button class="btn" onclick="window.location.href='https://www.district.in/events/soul-jams-bengaluru-3rd-anniversary-jul27-2025-buy-tickets?disableSSR=true'">
+    🎟️ Grab Your Ticket Now
+  </button>
+
+  <script>
+    const countdownEl = document.getElementById("countdown");
+    const target = new Date("July 18, 2025 23:59:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = target - now;
+
+      if (distance < 0) {
+        countdownEl.innerText = "Early Bird Closed 😭";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownEl.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s left`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+
+</body>
+</html>
